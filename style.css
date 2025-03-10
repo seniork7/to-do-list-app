@@ -60,7 +60,7 @@ input {
 }
 
 .task-btn:hover {
-    background-color: rgb(177, 252, 177);
+    background-color: rgb(172, 251, 172);
     transform: scale(0.9);
 }
 
