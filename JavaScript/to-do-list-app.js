@@ -1,3 +1,6 @@
+let todoListHtml = '';
+let filter = document.getElementById('filter');
+
 // create an object array and store it to local storage
 const todoList = JSON.parse(localStorage.getItem('todoTask')) || [{
     task: 'do laundry',
@@ -40,7 +43,6 @@ function inputValue() {
 
 // display the Todo list 
 export function displayTodoList () {
-    let todoListHtml = '';
 
     todoList.forEach ((todoObject, index) => {
         // store the values from the object into variables
@@ -76,4 +78,49 @@ export function displayTodoList () {
 document.querySelector('.js-add-task-btn')
     .addEventListener('click', () => {
         inputValue();
+});
+
+// create a filter search box
+filter.addEventListener('keyup', searchItems);
+
+function searchItems(searchText) {
+    // get the value in the search box and convert it to lowercase
+    const search = searchText.target.value.toLowerCase();
+
+    // filter the todoList based on the search input
+    const filteredTodos = todoList.filter(todoItem => 
+        todoItem.task.toLowerCase().includes(search)
+    );
+
+    // clear the existing HTML and display the filtered list
+    let filteredHtml = '';
+    filteredTodos.forEach(todoObject => {
+        const { task, dueDate, time } = todoObject;
+
+        const html = `
+            <div>${task}</div>
+            <div>${dueDate}</div>
+            <div>${time}</div>
+            <button class="remove-todo-btn task-btn-js">Remove</button>
+        `;
+
+        filteredHtml += html;
     });
+
+    document.querySelector('.js-todolist').innerHTML = filteredHtml;
+
+    // make the Remove button interactive for the filtered list
+    document.querySelectorAll('.remove-todo-btn')
+        .forEach((removeBtn, index) => {
+            removeBtn.addEventListener('click', () => {
+                const todoIndex = todoList.findIndex(todo => 
+                    todo.task === filteredTodos[index].task &&
+                    todo.dueDate === filteredTodos[index].dueDate &&
+                    todo.time === filteredTodos[index].time
+                );
+                todoList.splice(todoIndex, 1);
+                displayTodoList();
+                localStorage.setItem('todoTask', JSON.stringify(todoList));
+            });
+        });
+}
