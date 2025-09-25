@@ -3,48 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/src/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
     <title>To Do List App</title>
-</head>
 
-<body>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Flowbite CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Navbar -->
     <header>
-        <!-- Navbar -->
-        <!-- Make the Nav relative so the Hamburger Menu container can be absolute -->
-        <nav class="realative mx-auto p-6 bg-teal-500">
-            <!-- Flex container -->
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <h1 class="text-2xl pt-2">ToDo App</h1>
-                <!-- Filter search box -->
-                <input type="text" id="filter" class="hidden md:block border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-200 placeholder:text-gray-500 placeholder:italic" placeholder="Search Todo..." name="search">
-                <!-- Button -->
-                <a href="https://github.com/seniork7?tab=repositories" class="hidden md:block p-3 px-6 pt-2 bg-red-500 text-white rounded-full baseline hover:bg-red-400">Other Apps</a>
+        <nav class="bg-blue-900 border-gray-200 px-4 lg:px-6 py-2.5">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <a href="#" class="flex items-center">
+                    <span class="self-center text-xl font-semibold whitespace-nowrap text-white">ToDo App</span>
+                </a>
+                <div class="flex items-center lg:order-2">
+                    <a href="https://github.com/seniork7?tab=repositories" class="text-white  bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2">Other Apps</a>
+                </div>
+                <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu">
+
+                </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section id="add-todo-activity">
-            <!-- <h1>To Do List App</h1> -->
-    
-        <!-- Make input and date fields with a button to add task to list -->
-        <div class="todo-input-section">
-            <input type="text" class="js-input" placeholder="write a task...">
-            <input type="date" class="js-date-input">
-            <input type="time" class="js-time-input">
-            <button type="submit" class="js-add-task-btn task-btn task-btn-js">Add</button>
-        </div>
+    <!-- Main Content -->
+    <main class="container mx-auto mt-10 px-4 flex-grow">
+        <!-- Search Bar -->
+        <section class="mb-10">
+            <div class="flex justify-center">
+                <input type="text" id="filter" class="w-full lg:w-96 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 placeholder-gray-500 placeholder-italic" placeholder="Search Todo...">
+            </div>
+        </section>
 
-        <div class="js-todolist todoList-style"></div>
+        <!-- Add Todo -->
+        <section id="add-todo-activity" class="mb-10">
+            <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">Add a New Task</h2>
+                <div class="space-y-4">
+                    <input type="text" class="js-input w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700" placeholder="Write a task...">
+                    <input type="date" class="js-date-input w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700">
+                    <input type="time" class="js-time-input w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700">
+                    <button type="submit" class="js-add-task-btn w-full bg-blue-900 text-white font-medium rounded-lg p-2 hover:bg-blue-700">Add Task</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Todo List -->
+        <section>
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">Your Tasks</h2>
+                <div class="js-todolist space-y-4">
+                </div>
+            </div>
         </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@motionone/dom"></script>
-    <script type="module" src="JavaScript/main.js"></script>
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white text-center py-4">
+        <p>Created by Kevon Senior &copy; 2025</p>
+    </footer>
 
+    <!-- Flowbite JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
 </body>
 </html>
